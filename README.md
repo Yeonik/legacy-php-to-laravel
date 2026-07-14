@@ -116,26 +116,23 @@ CI runs the suite plus Pint and PHPStan (level 6) on every push.
 
 ## Running it
 
-The Laravel skeleton (`composer.json`, `artisan`, `bootstrap/`, `vendor/`) is not
-committed — it is whatever `composer create-project` generates, and there is
-nothing to review in it. What is committed is the code that was actually written
-for this case study. `scripts/bootstrap.sh` generates the skeleton and overlays
-this repository on top of it.
+The application is committed in full, `composer.lock` included — so the versions
+you get are the versions this was written against.
 
 ```bash
 git clone https://github.com/<user>/legacy-to-laravel
-cd legacy-to-laravel
+cd legacy-to-laravel/app-laravel
 
-./scripts/bootstrap.sh          # generates the skeleton, installs deps
-
-# one manual step: add the 'covers' disk to config/filesystems.php
-# the block is in app-laravel/config/filesystems-covers.php.snippet
-
-cd app-laravel
+composer install
+cp .env.example .env
+php artisan key:generate
 php artisan migrate --seed
+
 php artisan test
 php artisan serve
 ```
+
+`./scripts/bootstrap.sh` from the repository root does all of the above in one go.
 
 Seeded accounts:
 
