@@ -7,7 +7,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
+/**
+ * Columns as declared in 2024_01_01_000001_create_users_table.php.
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $password         nullable during the F-04 migration window
+ * @property string|null $legacy_password  old MD5 digest, dropped on upgrade
+ * @property Role $role
+ * @property Carbon|null $email_verified_at
+ * @property string|null $remember_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */

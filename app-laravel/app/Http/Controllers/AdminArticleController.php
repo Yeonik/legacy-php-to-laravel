@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
 use App\Actions\StoreArticleCover;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 /**
  * Compare with legacy/public/admin.php — 90 lines holding authorisation,

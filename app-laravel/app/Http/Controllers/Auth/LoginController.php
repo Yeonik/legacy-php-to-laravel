@@ -7,11 +7,11 @@ namespace App\Http\Controllers\Auth;
 use App\Auth\LegacyPasswordUpgrader;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 
 final class LoginController extends Controller
 {

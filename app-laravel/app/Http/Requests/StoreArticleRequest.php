@@ -19,6 +19,9 @@ final class StoreArticleRequest extends FormRequest
         return $this->user()->can('create', \App\Models\Article::class);
     }
 
+    /**
+     * @return array<string, list<string>>
+     */
     public function rules(): array
     {
         return [
