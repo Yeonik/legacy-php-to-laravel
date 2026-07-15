@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     *
+     * F-08 (failed-login logging) is handled by App\Listeners\LogFailedLogin,
+     * which Laravel registers automatically by the event it type-hints — so no
+     * explicit binding is needed here, and adding one would double-fire it.
      */
     public function boot(): void
     {
