@@ -38,7 +38,7 @@ final class LegacyPasswordUpgrader
         }
 
         $user->forceFill([
-            'password'        => Hash::make($plaintext),
+            'password' => Hash::make($plaintext),
             'legacy_password' => null,
         ])->save();
 

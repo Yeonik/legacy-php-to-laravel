@@ -23,13 +23,13 @@ final class LegacyPasswordUpgradeTest extends TestCase
     public function test_a_legacy_user_can_log_in_with_their_old_password(): void
     {
         $user = User::factory()->create([
-            'email'           => 'old@example.com',
-            'password'        => null,
+            'email' => 'old@example.com',
+            'password' => null,
             'legacy_password' => md5('correct horse battery staple'),
         ]);
 
         $this->post('/login', [
-            'email'    => 'old@example.com',
+            'email' => 'old@example.com',
             'password' => 'correct horse battery staple',
         ])->assertRedirect('/');
 
@@ -39,13 +39,13 @@ final class LegacyPasswordUpgradeTest extends TestCase
     public function test_logging_in_silently_upgrades_the_hash_to_bcrypt(): void
     {
         $user = User::factory()->create([
-            'email'           => 'old@example.com',
-            'password'        => null,
+            'email' => 'old@example.com',
+            'password' => null,
             'legacy_password' => md5('correct horse battery staple'),
         ]);
 
         $this->post('/login', [
-            'email'    => 'old@example.com',
+            'email' => 'old@example.com',
             'password' => 'correct horse battery staple',
         ]);
 
@@ -59,7 +59,7 @@ final class LegacyPasswordUpgradeTest extends TestCase
     public function test_a_wrong_password_does_not_upgrade_anything(): void
     {
         $user = User::factory()->create([
-            'password'        => null,
+            'password' => null,
             'legacy_password' => md5('right'),
         ]);
 

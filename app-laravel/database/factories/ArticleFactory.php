@@ -20,11 +20,11 @@ final class ArticleFactory extends Factory
 
         return [
             'author_id' => User::factory(),
-            'title'     => $title,
-            'slug'      => Str::slug($title).'-'.Str::random(6),
-            'body'      => '<p>'.implode('</p><p>', fake()->paragraphs(4)).'</p>',
+            'title' => $title,
+            'slug' => Str::slug($title).'-'.Str::random(6),
+            'body' => '<p>'.implode('</p><p>', fake()->paragraphs(4)).'</p>',
             'published' => true,
-            'views'     => 0,
+            'views' => 0,
         ];
     }
 }

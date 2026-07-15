@@ -32,7 +32,7 @@ final class AuthorizationTest extends TestCase
 
     public function test_a_reader_cannot_delete_an_article(): void
     {
-        $reader  = User::factory()->create(['role' => Role::Reader]);
+        $reader = User::factory()->create(['role' => Role::Reader]);
         $article = Article::factory()->create();
 
         $this->actingAs($reader)
@@ -44,7 +44,7 @@ final class AuthorizationTest extends TestCase
 
     public function test_an_editor_cannot_delete_someone_elses_article(): void
     {
-        $editor  = User::factory()->create(['role' => Role::Editor]);
+        $editor = User::factory()->create(['role' => Role::Editor]);
         $article = Article::factory()->create();   // authored by someone else
 
         $this->actingAs($editor)
@@ -54,7 +54,7 @@ final class AuthorizationTest extends TestCase
 
     public function test_an_admin_can_delete_an_article(): void
     {
-        $admin   = User::factory()->create(['role' => Role::Admin]);
+        $admin = User::factory()->create(['role' => Role::Admin]);
         $article = Article::factory()->create();
 
         $this->actingAs($admin)

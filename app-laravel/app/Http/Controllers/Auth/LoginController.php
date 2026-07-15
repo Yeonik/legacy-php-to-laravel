@@ -23,7 +23,7 @@ final class LoginController extends Controller
     public function store(Request $request, LegacyPasswordUpgrader $upgrader): RedirectResponse
     {
         $credentials = $request->validate([
-            'email'    => ['required', 'email'],
+            'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ]);
 

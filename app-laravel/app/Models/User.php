@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,8 +16,8 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property string|null $password         nullable during the F-04 migration window
- * @property string|null $legacy_password  old MD5 digest, dropped on upgrade
+ * @property string|null $password nullable during the F-04 migration window
+ * @property string|null $legacy_password old MD5 digest, dropped on upgrade
  * @property Role $role
  * @property Carbon|null $email_verified_at
  * @property string|null $remember_token
@@ -25,8 +26,9 @@ use Illuminate\Support\Carbon;
  */
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use Notifiable;
 
     protected $fillable = ['name', 'email', 'password', 'role'];
@@ -36,9 +38,9 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'password'          => 'hashed',
+            'password' => 'hashed',
             'email_verified_at' => 'datetime',
-            'role'              => Role::class,
+            'role' => Role::class,
         ];
     }
 

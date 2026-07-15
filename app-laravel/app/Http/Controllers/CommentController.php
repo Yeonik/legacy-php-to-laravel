@@ -18,7 +18,7 @@ final class CommentController extends Controller
         // validation, no length limits, no escaping on the way back out (F-03).
         $data = $request->validate([
             'author' => ['required', 'string', 'max:80'],
-            'body'   => ['required', 'string', 'max:2000'],
+            'body' => ['required', 'string', 'max:2000'],
         ]);
 
         $article->comments()->create($data);

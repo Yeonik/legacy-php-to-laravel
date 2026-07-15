@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,7 @@ use Illuminate\Support\Carbon;
  */
 class Article extends Model
 {
-    /** @use HasFactory<\Database\Factories\ArticleFactory> */
+    /** @use HasFactory<ArticleFactory> */
     use HasFactory;
 
     /**
@@ -39,7 +40,7 @@ class Article extends Model
 
     protected $casts = [
         'published' => 'boolean',
-        'views'     => 'integer',
+        'views' => 'integer',
     ];
 
     /** Columns a listing needs. Fixes F-13 (SELECT *). */

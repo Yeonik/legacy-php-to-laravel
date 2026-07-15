@@ -42,7 +42,7 @@ final class AdminArticleController extends Controller
             $data['cover_path'] = $storeCover($request->file('cover'));
         }
 
-        $data['slug']      = Str::slug($data['title']).'-'.Str::random(6);
+        $data['slug'] = Str::slug($data['title']).'-'.Str::random(6);
         $data['author_id'] = $request->user()->id;
 
         Article::create($data);
