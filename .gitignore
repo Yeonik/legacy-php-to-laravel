@@ -10,6 +10,9 @@
 /app-laravel/bootstrap/cache/
 /app-laravel/public/build/
 
+# Local Claude Code agent context, not part of the deliverable.
+/CLAUDE.md
+
 /legacy/uploads/*
 !/legacy/uploads/.gitkeep
 
