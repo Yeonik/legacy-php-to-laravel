@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use App\Models\Article;
 use Illuminate\Foundation\Http\FormRequest;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Fixes F-11 and part of F-14.
@@ -18,6 +19,24 @@ final class StoreArticleRequest extends FormRequest
     public function authorize(): bool
     {
         return $this->user()->can('create', Article::class);
+    }
+
+    /**
+     * F-03: the body is the one field this application renders as raw HTML
+     * (resources/views/articles/show.blade.php). It is sanitised here — before
+     * validation, and therefore before it is ever stored — through an allow-list
+     * purifier. The persisted markup can only contain the formatting tags below;
+     * anything else the client submits is dropped on the way in, so the stored
+     * value is already safe by the time it reaches the view.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'body' => Purifier::clean(
+                (string) $this->input('body', ''),
+                ['HTML.Allowed' => 'p,br,strong,em,b,i,u,ul,ol,li,a[href|title],h2,h3,blockquote,code,pre'],
+            ),
+        ]);
     }
 
     /**

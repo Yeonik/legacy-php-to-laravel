@@ -13,8 +13,10 @@
         The ONE place in this application that renders unescaped HTML.
 
         It is deliberate: an article body is authored content and needs
-        formatting. It is safe only because the body is sanitised server-side
-        through an allow-list purifier before it is ever stored.
+        formatting. It is safe because the body is run through an allow-list
+        purifier on the way IN — see StoreArticleRequest::prepareForValidation
+        (F-03) — so what is stored, and therefore what is printed here, can only
+        contain the handful of formatting tags on that list.
 
         Do not copy this pattern to comments, titles, or anything a visitor can
         submit. In the legacy app every one of those was rendered exactly like
