@@ -49,7 +49,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ->name('articles.store');
 
     // F-10: DELETE verb, not a GET link.
-    Route::delete('/articles/{article}', [AdminArticleController::class, 'destroy'])
+    // {article:id} — the admin panel addresses articles by id. The model's
+    // route key is `slug` (for public URLs like /articles/my-post); binding by
+    // it here would 404 on the numeric ids the panel actually uses.
+    Route::delete('/articles/{article:id}', [AdminArticleController::class, 'destroy'])
         ->middleware('can:delete,article')
         ->name('articles.destroy');
 });
