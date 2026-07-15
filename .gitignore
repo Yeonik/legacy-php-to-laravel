@@ -1,13 +1,16 @@
 # Derived artefacts only. Everything else under app-laravel/ — composer.json,
 # composer.lock, artisan, bootstrap/, config/ — is tracked: it is an application,
 # not a library, and composer.lock is what pins the versions.
+#
+# The framework's runtime service directories (bootstrap/cache, storage/framework,
+# storage/logs, storage/app) are NOT ignored wholesale here: each keeps its own
+# committed .gitignore stub — exactly as the Laravel skeleton ships them — so a
+# fresh clone has the directories the framework needs to boot, while their
+# contents stay untracked. Ignoring the directories outright broke `composer
+# install` on a clean checkout (bootstrap/cache absent → package:discover failed).
 /app-laravel/vendor/
 /app-laravel/.env
 /app-laravel/node_modules/
-/app-laravel/storage/framework/
-/app-laravel/storage/logs/
-/app-laravel/storage/app/private/
-/app-laravel/bootstrap/cache/
 /app-laravel/public/build/
 
 # Local Claude Code agent context, not part of the deliverable.
