@@ -32,4 +32,7 @@ jobs:
         run: vendor/bin/pint --test
 
       - name: Static analysis (PHPStan)
-        run: vendor/bin/phpstan analyse
+        # --memory-limit=1G so the step does not depend on the runner's default
+        # php.ini memory_limit. This is a runtime resource, not an analysis
+        # setting: the level (6) and coverage are unchanged.
+        run: vendor/bin/phpstan analyse --memory-limit=1G

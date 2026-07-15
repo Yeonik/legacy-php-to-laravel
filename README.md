@@ -107,9 +107,9 @@ tests/Feature/SearchTest.php               F-01, F-03, F-12 — input is data, o
 ```
 
 ```bash
-php artisan test              # 11 passing
-vendor/bin/pint --test        # code style (Laravel preset + strict_types)
-vendor/bin/phpstan analyse    # static analysis, level 6 (larastan)
+php artisan test                           # 15 passing
+vendor/bin/pint --test                     # code style (Laravel preset + strict_types)
+vendor/bin/phpstan analyse --memory-limit=1G   # static analysis, level 6 (larastan)
 ```
 
 All three are green; CI runs them on every push.
