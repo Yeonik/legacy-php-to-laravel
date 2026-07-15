@@ -107,10 +107,12 @@ tests/Feature/SearchTest.php               F-01, F-03, F-12 — input is data, o
 ```
 
 ```bash
-docker compose run --rm app php artisan test
+php artisan test              # 11 passing
+vendor/bin/pint --test        # code style (Laravel preset + strict_types)
+vendor/bin/phpstan analyse    # static analysis, level 6 (larastan)
 ```
 
-CI runs the suite plus Pint and PHPStan (level 6) on every push.
+All three are green; CI runs them on every push.
 
 ---
 

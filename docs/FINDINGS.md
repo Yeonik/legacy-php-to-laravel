@@ -54,8 +54,10 @@ term echoed back into the input `value`.
 every visitor's browser, including the admin's.
 
 **Fix:** Blade's `{{ }}` escapes by default. `{!! !!}` is used in exactly one
-place — the article body — and only after the HTML has been sanitised
-server-side through an allow-list purifier. That single exception is documented
+place — the article body — and only because that field is sanitised **on the way
+in**, in `StoreArticleRequest`, through an allow-list purifier (HTMLPurifier, via
+`mews/purifier`) before it is ever stored. So the value printed unescaped can
+only contain a fixed set of formatting tags. That single exception is documented
 inline so a future reader does not "clean it up" by accident.
 
 ---
@@ -107,9 +109,11 @@ this" is answered.
 ### F-08 — No rate limiting on login
 **Class:** CWE-307. No lockout, no backoff, no logging of failed attempts.
 
-**Fix:** `ThrottleRequests` on the auth routes plus Laravel's
-`AuthenticateSession` throttling; failed attempts emit a `Failed` event that is
-logged with IP and email.
+**Fix:** `throttle:5,1` on the login route — five attempts a minute per client,
+then HTTP 429. And every failed attempt fires Laravel's `Failed` event, which
+`App\Listeners\LogFailedLogin` records with the email that was tried and the
+source IP, so a run of guesses leaves a trail the legacy login never did. The
+password is never logged.
 
 ---
 
@@ -135,7 +139,8 @@ the web server.
 - MIME verified server-side, not from the request header
 - filename discarded; storage generates its own
 - files land in `storage/app/private/covers`, **outside the document root**, and
-  are served through a controller that checks authorisation
+  are streamed by a controller instead of served by the web server — so an
+  uploaded file is never executed as a script, whatever it turns out to contain
 
 ---
 
