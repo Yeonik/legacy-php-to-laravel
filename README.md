@@ -165,6 +165,4 @@ have made the diff harder to read, which is the opposite of the point.
 
 ## Author
 
-**Yeonik** — Senior PHP / Backend Engineer, 15+ years.
-PHP 7/8, web service architecture, legacy migration, application security.
-Certified in Web Application Security and ISO 27001:2013.
+Yeonik
