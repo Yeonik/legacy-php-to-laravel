@@ -43,9 +43,14 @@ final class AdminArticleController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']).'-'.Str::random(6);
-        $data['author_id'] = $request->user()->id;
 
-        Article::create($data);
+        $article = new Article($data);
+        // author_id is deliberately NOT in $fillable — it is the authenticated
+        // user, never a request field. Setting it directly (rather than through
+        // mass assignment) is both why a client cannot forge it and why it is
+        // not silently dropped on the way to the database.
+        $article->author_id = $request->user()->id;
+        $article->save();
 
         return redirect()
             ->route('admin.articles.index')
