@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Plain-text pagination instead of the default Tailwind view, which
+        // renders as oversized SVG arrows without a build step this project
+        // deliberately does not have.
+        Paginator::defaultView('pagination.minimal');
     }
 }
