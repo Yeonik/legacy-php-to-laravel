@@ -30,6 +30,9 @@ services:
       DB_DATABASE: cms
       DB_USERNAME: cms
       DB_PASSWORD: secret
+    # Generates .env (wired to the db service), migrates + seeds, then serves —
+    # so `docker compose up` alone brings up a working, populated app.
+    command: ["sh", "docker/entrypoint.sh"]
     depends_on: [db]
 
   db:
