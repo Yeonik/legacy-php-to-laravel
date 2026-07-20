@@ -141,6 +141,17 @@ php artisan serve
 
 `./scripts/bootstrap.sh` from the repository root does all of the above in one go.
 
+Or, with nothing installed locally but Docker:
+
+```bash
+docker compose up -d app
+open http://127.0.0.1:8000
+```
+
+Every container start recreates the database and re-seeds it, so the environment
+is always in a predictable state and changes do not survive a restart. That is
+deliberate.
+
 Seeded accounts:
 
 | Email | Password | Note |
