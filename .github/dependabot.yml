@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+  # The Laravel application. Note the directory: the only composer.json lives in
+  # app-laravel/, not at the repository root. legacy/ has no manifest and is a
+  # frozen specimen — it must never be updated.
+  - package-ecosystem: composer
+    directory: /app-laravel
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

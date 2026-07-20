@@ -1,5 +1,10 @@
 # Legacy PHP → Laravel: a rewrite, in public
 
+[![CI](https://github.com/Yeonik/legacy-php-to-laravel/actions/workflows/ci.yml/badge.svg)](https://github.com/Yeonik/legacy-php-to-laravel/actions/workflows/ci.yml)
+[![PHP 8.3](https://img.shields.io/badge/PHP-8.3-777BB4?logo=php&logoColor=white)](https://www.php.net/releases/8.3/en.php)
+[![PHPStan level 6](https://img.shields.io/badge/PHPStan-level%206-2a5ea7)](https://phpstan.org/user-guide/rule-levels)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+
 A small CMS — articles, comments, an admin panel, image uploads — written the
 way a lot of PHP was written in 2010, and then rewritten on Laravel.
 
@@ -122,8 +127,8 @@ The application is committed in full, `composer.lock` included — so the versio
 you get are the versions this was written against.
 
 ```bash
-git clone https://github.com/<user>/legacy-to-laravel
-cd legacy-to-laravel/app-laravel
+git clone https://github.com/Yeonik/legacy-php-to-laravel
+cd legacy-php-to-laravel/app-laravel
 
 composer install
 cp .env.example .env
